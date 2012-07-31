@@ -36,6 +36,29 @@ namespace KnightGame.Core.Domains
 		public Player Player { get; set; }
 
 		#endregion
+
+		#region method
+
+		public override bool Equals(object obj)
+		{
+			return base.Equals(obj);
+		}
+
+		public override int GetHashCode()
+		{
+			return base.GetHashCode();
+		}
+
+		public override string ToString()
+		{
+			return string.Format("[ R{0}C{1}: Type:{2}, Player:{3} ]", 
+				this.Row, 
+				this.Column, 
+				Enum.GetName(typeof(BoardCellStatusType), this.StatusType),
+				this.Player == null ? "(null)" : this.Player.ToString());
+		}
+
+		#endregion
 	}
 
 	/// <summary>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace KnightGame.Core.Domains
@@ -69,6 +70,9 @@ namespace KnightGame.Core.Domains
 		private void Player_PieceMoved(object sender, MovePieceEventArgs e)
 		{
 			this.Moves.Add(e.Move);
+
+			this.ChangeActivePlayer();
+
 			this.UpdateBoardCellStatusList();
 		}
 
@@ -87,6 +91,8 @@ namespace KnightGame.Core.Domains
 
 		private void UpdateBoardCellStatusList()
 		{
+			this.BoardCellStatuses.ForEach(x => x.StatusType = BoardCellStatusType.Default);
+
 			foreach (var move in this.Moves)
 			{
 				var bcStatus = this.BoardCellStatuses
@@ -134,6 +140,43 @@ namespace KnightGame.Core.Domains
 					bcStatus.StatusType = BoardCellStatusType.NextAvailable;
 				}
 			}
+		}
+
+		public void MovePiece(string cellID)
+		{
+			var moveTo = this.CellIDToPosition(cellID);
+			this.ActivePlayer.MovePiece(moveTo);
+		}
+
+		private static readonly Regex CellIDPattern = new Regex("R(?<Row>[0-9]+)C(?<Col>[0-9]+)");
+
+		private Position CellIDToPosition(string cellID)
+		{
+			if (CellIDPattern.IsMatch(cellID))
+			{
+				var match = CellIDPattern.Match(cellID);
+				var row = int.Parse(match.Result("${Row}"));
+				var col = int.Parse(match.Result("${Col}"));
+
+				return new Position(col, row);
+			}
+
+			throw new ArgumentException(string.Format("不正なパラメータ: '{0}'", cellID), "cellID");
+		}
+
+		private void ChangeActivePlayer()
+		{
+			var activePlayerIndex = Array.IndexOf(this.Players, this.ActivePlayer);
+			if (activePlayerIndex == this.Players.Length - 1)
+			{
+				activePlayerIndex = 0;
+			}
+			else
+			{
+				activePlayerIndex++;
+			}
+
+			this.ActivePlayer = this.Players[activePlayerIndex];
 		}
 
 		#endregion

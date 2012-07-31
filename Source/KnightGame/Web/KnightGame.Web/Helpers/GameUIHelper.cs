@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -60,13 +61,17 @@ namespace KnightGame.Web.Helpers
 		{
 			var tag = new XElement(tagName);
 
-			var className = GetBoardCellCssClass(column, row);
+			var id = string.Format("R{0}C{1}", row, column);
+			var attrID = new XAttribute("id", id);
+			tag.Add(attrID);
+
+			var className = GetDefaultCellCssClass(column, row);
 
 			var boardCellStatus = gameViewModel.GetBoardCellStatus(column, row);
 			switch (boardCellStatus.StatusType)
 			{
 				case BoardCellStatusType.Default:
-					className = GetBoardCellCssClass(column, row);
+					className = GetDefaultCellCssClass(column, row);
 					break;
 				case BoardCellStatusType.ActiveUserExists:
 					tag.Add(new XElement("span", boardCellStatus.Player.DisplaySymbol));
@@ -79,7 +84,8 @@ namespace KnightGame.Web.Helpers
 					className = "nextAvailable";
 					break;
 				case BoardCellStatusType.PlayerVisited:
-					className = GetBoardCellCssClass(column, row);
+					className = GetDefaultCellCssClass(column, row);
+					tag.Add(new XElement("span", boardCellStatus.Player.Number.ToString()));
 					break;
 			}
 
@@ -89,10 +95,20 @@ namespace KnightGame.Web.Helpers
 			return tag;
 		}
 
-		private static string GetBoardCellCssClass(int column, int row)
+		private static string GetColorValue(Color color)
+		{
+			return string.Format("#{0}{1}{2}", color.R.ToString("X2"), color.G.ToString("X2"), color.B.ToString("X2"));
+		}
+
+		private static string GetDefaultCellCssClass(int column, int row)
 		{
 			bool isBlack = ((column + row) % 2) == 0;
 			return isBlack ? "blackCell" : "whiteCell";
+		}
+
+		private static string GetPlayerVisitedCellCssClass(BoardCellStatus cellStatus)
+		{
+			return null;
 		}
 
 		private static XElement GetBoardRow(GameViewModel gameViewModel, bool isCoordRow, int row = 0)

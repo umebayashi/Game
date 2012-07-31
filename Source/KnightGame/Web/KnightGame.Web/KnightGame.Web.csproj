@@ -145,6 +145,7 @@
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\GameViewModel.cs" />
+    <Compile Include="WorkerServices\BaseWorkerService.cs" />
     <Compile Include="WorkerServices\HomeWorkerService.cs" />
   </ItemGroup>
   <ItemGroup>

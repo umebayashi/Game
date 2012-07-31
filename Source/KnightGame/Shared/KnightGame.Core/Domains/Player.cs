@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
@@ -44,9 +45,19 @@ namespace KnightGame.Core.Domains
 		public string Name { get; private set; }
 
 		/// <summary>
+		/// プレイヤー番号
+		/// </summary>
+		public int Number { get; set; }
+
+		/// <summary>
 		/// 駒のシンボルとして表示する文字列
 		/// </summary>
 		public string DisplaySymbol { get; set; }
+
+		/// <summary>
+		/// 過去訪れたマス目に表示する色
+		/// </summary>
+		public Color VisitedColor { get; set; }
 
 		/// <summary>
 		/// 現在の駒の位置

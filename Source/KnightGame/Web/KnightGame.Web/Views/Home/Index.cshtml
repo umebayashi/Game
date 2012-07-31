@@ -11,10 +11,11 @@
 
 @section scripts
 {
+	@Url.Action("Index", new { cellID = "R1C1" })
 	<script type="text/javascript">
 		$(function () {
-			$("td.nextAvailable").click(function () {
-				alert("Hello World!");
+			$("td.nextAvailable").click(function (event) {
+				location.href = '@Url.Action("Index")' + '?cellID=' + event.target.id;
 			});
 		});
 	</script>

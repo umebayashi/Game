@@ -12,14 +12,14 @@ namespace KnightGame.Web.Controllers
 	{
 		public HomeController()
 		{
-			this.WorkerService = new HomeWorkerService();
+			this.WorkerService = new HomeWorkerService(this);
 		}
 
 		public HomeWorkerService WorkerService { get; set; }
 
-		public ActionResult Index()
+		public ActionResult Index(string cellID)
 		{
-			var viewModel = this.WorkerService.GetViewModel();
+			var viewModel = this.WorkerService.GetViewModel(cellID);
 
 			return View(viewModel);
 		}
