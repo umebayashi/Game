@@ -60,9 +60,14 @@ namespace KnightGame.Web.WorkerServices
 
 		private GameViewModel GetGameViewModel(string cellID)
 		{
-			var gameSession = this.GetGameSession();
-			if (cellID != null)
+			GameSession gameSession;
+			if (cellID == null)
 			{
+				gameSession = this.InitGameSession();
+			}
+			else
+			{
+				gameSession = this.GetGameSession();
 				gameSession.MovePiece(cellID);
 			}
 
