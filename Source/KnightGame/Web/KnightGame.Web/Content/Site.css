@@ -587,6 +587,97 @@ tr.pager td {
 }
 
 
+/* chessBoard
+----------------------------------------------------------*/
+
+div.chessBoardArea
+{
+	width: 510px;
+	height: 510px;
+	margin-right: auto;
+	margin-left:auto;
+	position: relative;
+}
+
+table.chessBoard
+{
+	width: 500px;
+	height: 500px;
+	margin-bottom: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
+	margin-top: 5px;
+}
+
+	table.chessBoard tr
+	{
+	}
+
+	table.chessBoard th
+	{
+		padding: 0 0 0 0;
+		text-align: center;
+	}
+
+		table.chessBoard th.hCoords
+		{
+			height: 6%;
+			background-color: #339933;
+			color: #ffff99;
+		}
+
+		table.chessBoard th.vCoords
+		{
+			width: 6%;
+			background-color: #339933;
+			color: #ffff99;
+		}
+	
+	table.chessBoard td
+	{
+		height: 11%;
+		width: 11%;
+		padding: 0 0 0 0;
+		text-align: center;
+	}
+
+		table.chessBoard td.boardCorner
+		{
+			height: 6%;
+			width: 6%;
+			background-color: #339933;
+			color: #ffff99;
+		}
+
+		table.chessBoard td.blackCell
+		{
+			font-size: 52px;
+			line-height: 42px;
+			background-color: #808080;
+		}
+
+		table.chessBoard td.whiteCell
+		{
+			font-size: 52px;
+			line-height: 42px;
+			background-color: #ffffff;	
+		}
+
+		table.chessBoard td.activePiece
+		{
+			font-size: 52px;
+			line-height: 42px;
+			background-color: #90ee90;
+		}
+
+		table.chessBoard td.nextAvailable
+		{
+			font-size: 52px;
+			line-height: 42px;
+			background-color: red;
+			cursor: pointer;
+		}
+
 /********************
 *   Mobile Styles   *
 ********************/

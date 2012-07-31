@@ -3,16 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using KnightGame.Web.Models;
+using KnightGame.Web.WorkerServices;
 
 namespace KnightGame.Web.Controllers
 {
 	public class HomeController : Controller
 	{
+		public HomeController()
+		{
+			this.WorkerService = new HomeWorkerService();
+		}
+
+		public HomeWorkerService WorkerService { get; set; }
+
 		public ActionResult Index()
 		{
-			ViewBag.Message = "Modify this template to kick-start your ASP.NET MVC application.";
+			var viewModel = this.WorkerService.GetViewModel();
 
-			return View();
+			return View(viewModel);
 		}
 
 		public ActionResult About()

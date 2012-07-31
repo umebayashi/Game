@@ -1,3 +1,21 @@
-﻿@{
+﻿@model KnightGame.Web.ViewModels.HomeViewModel
+@using KnightGame.Web.Helpers
+
+@{
     ViewBag.Title = "Home Page";
+}
+
+<div id="gameUIRoot">
+	@Html.Partial("_GameUI")
+</div>
+
+@section scripts
+{
+	<script type="text/javascript">
+		$(function () {
+			$("td.nextAvailable").click(function () {
+				alert("Hello World!");
+			});
+		});
+	</script>
 }

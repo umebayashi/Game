@@ -39,6 +39,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domains\BoardCellStatus.cs" />
+    <Compile Include="Domains\GameEvents.cs" />
+    <Compile Include="Domains\GameLogic.cs" />
+    <Compile Include="Domains\GameOption.cs" />
+    <Compile Include="Domains\GameSession.cs" />
+    <Compile Include="Domains\Move.cs" />
+    <Compile Include="Domains\Player.cs" />
+    <Compile Include="Domains\Position.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
